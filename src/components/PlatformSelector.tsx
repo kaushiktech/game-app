@@ -9,13 +9,15 @@ interface Props{
 }
 const PlatformSelector = ({onSelectedPlatform,selectedPlatform}:Props) => {
     const {data,error}=usePlatforms();
+
     if(error)return null;
+
     else {
         return (
 
             <Menu>
                 <MenuButton as={Button} rightIcon={<BsChevronDown/>}>
-                    {selectedPlatform!==null?selectedPlatform.name:"Platform"}
+                    {selectedPlatform!==undefined? selectedPlatform?.name:"Platform"}
                 </MenuButton>
                 <MenuList>
                     {
