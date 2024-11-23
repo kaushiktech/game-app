@@ -1,5 +1,5 @@
 import {FaWindows,FaPlaystation,FaXbox,FaApple,FaLinux,FaAndroid} from 'react-icons/fa'
-import {Platform} from "../hooks/useGames";
+import {Platform} from "../hooks/useData";
 import {MdPhoneIphone} from 'react-icons/md';
 import {SiNintendo} from 'react-icons/si';
 import {BsGlobe} from 'react-icons/bs';

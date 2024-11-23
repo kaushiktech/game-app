@@ -8,28 +8,27 @@ interface Props{
     onSelectedGenre:Genre | null;
 }
 const GenreList = ({onSelectGenre,onSelectedGenre}:Props) => {
-    const {data,isLoading}=useGenres();
-    if(isLoading) return <Spinner/>
-    else {
-        return (
-            <>
-            <Heading fontSize="2xl" marginBottom={4}>Genres</Heading>
-            <List>
-                {data.map(genre => (
-                    <Link backgroundColor="blue" key={genre.id} onClick={()=>onSelectGenre(genre)} >
-                    <ListItem paddingY="5px" ><HStack>
+    const {data}=useGenres();
 
-                        <Image objectFit="cover" boxSize="32px" borderRadius={8} src={getCroppedImageUrl(genre.image_background)}></Image>
-                        <Text fontWeight={genre.id===onSelectedGenre?.id?'bold':'default'} fontSize="lg">{genre.name} </Text>
+    return (
+        <>
+        <Heading fontSize="2xl" marginBottom={4}>Genres</Heading>
+        <List>
+            {data.map(genre => (
+                <Link backgroundColor="blue" key={genre.id} onClick={()=>onSelectGenre(genre)} >
+                <ListItem paddingY="5px" ><HStack>
 
-                    </HStack>
-                    </ListItem>
-                    </Link>
-                ))}
-            </List>
-            </>
-        );
-    }
+                    <Image objectFit="cover" boxSize="32px" borderRadius={8} src={getCroppedImageUrl(genre.image_background)}></Image>
+                    <Text fontWeight={genre.id===onSelectedGenre?.id?'bold':'default'} fontSize="lg">{genre.name} </Text>
+
+                </HStack>
+                </ListItem>
+                </Link>
+            ))}
+        </List>
+        </>
+    );
+
 };
 
 export default GenreList;
