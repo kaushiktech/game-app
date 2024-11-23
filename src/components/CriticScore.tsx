@@ -6,7 +6,7 @@ interface Props {
 const CriticScore = ({score}:Props) => {
     let setBackGroundColor=score>90?'green':score>80?'yellow':'';
     return (
-        <Badge colorScheme={setBackGroundColor} font-size="14px" paddingX={2} borderRadius={4}>{score}</Badge>
+        <Badge colorScheme={setBackGroundColor} fontSize="14px" paddingX={2} borderRadius={4}>{score}</Badge>
     );
 };
 
