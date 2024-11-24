@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {createContext, useContext, useState} from 'react'
 import './App.css'
 import {Grid, GridItem, HStack, Show} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
@@ -13,11 +13,18 @@ export interface GameQuery{
     genre:Genre|null;
     platform:Platform|null;
     order:string|null;
+    searchQuery:string;
 }
+export const UserContext =createContext<((query:string) => void) | null>(null);
+
+
 function App() {
 
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
+  const setSearchQuery = (query:string) => {
+      setGameQuery({...gameQuery,searchQuery:query})
+  }
   return (
        <Grid templateAreas={{
            base: `"nav" "main"`,
@@ -28,7 +35,7 @@ function App() {
            lg:'200px 1fr'
        }}
        >
-           <GridItem area="nav"><NavBar/></GridItem>
+           <GridItem area="nav"><UserContext.Provider value={setSearchQuery}><NavBar/></UserContext.Provider></GridItem>
            <Show above="lg" >
            <GridItem area="aside" paddingX={5}><GenreList onSelectedGenre={gameQuery.genre} onSelectGenre={(genre)=>setGameQuery({...gameQuery,genre})}/></GridItem>
            </Show>
